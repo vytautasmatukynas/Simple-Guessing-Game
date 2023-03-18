@@ -10,7 +10,7 @@ screen.addshape(img)
 # set turtle shape
 turtle.shape(img)
 
-# # gets coordinates of mouse click
+# # gets coordinates of mouse click, to fill csv file with data
 # def get_mouse_click_coor(x, y):
 #     print(x, y)
 #
@@ -31,11 +31,7 @@ while len(guessed_states) < len(all_states) + 1:
                                           # .title() capitalize string, like "kazkas".title() = "Kazkas"
 
     if answer_state == "Exit":
-        missing_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                missing_states.append(state)
-
+        missing_states = [state for state in all_states if state not in guessed_states]
         new_data = pd.DataFrame(missing_states)
         new_data.to_csv("states_to_learn.csv")
         break
